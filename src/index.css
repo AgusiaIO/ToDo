@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.flex-center {
+  @apply flex items-center justify-center;
+}
+
+.table-heading,
+.table-data {
+  @apply border-r-2 px-6;
+}
+
+.table-heading {
+  @apply border-darkBg py-4;
+}
+.table-heading:last-child {
+  @apply border-r-0 text-center;
+}
+
+.table-data {
+  @apply border-darkSeparator;
+}
