@@ -2,12 +2,14 @@ import { useState } from "react";
 import { Post } from "../App";
 export const TableData: React.FC<{
   todo: Post;
-  done: boolean;
+  handleRemoveTodo: (todoId: number) => void;
 }> = (props) => {
   const [done, setDone] = useState(false);
+  const [todoText, setTodoText] = useState(props.todo.title);
+
   return (
     <>
-      <td className="h-4 w-4 border-r-2 border-darkSeparator">
+      <td className="dark:border-lightLighter h-4 w-4 border-r-2 border-darkSeparator">
         <button
           className="flex-center h-full w-full"
           onClick={() => setDone(!done)}
@@ -31,12 +33,13 @@ export const TableData: React.FC<{
           )}
         </button>
       </td>
-      <td className="table-data">{props.todo.userId}</td>
-      <td className="table-data">{props.todo.id}</td>
+      <td className="table-data text-center">{props.todo.id}</td>
+      <td className="table-data text-center">{props.todo.userId}</td>
       <td scope="row" className="table-data font-medium">
         <input
           type="text"
-          value={props.todo.title}
+          value={todoText}
+          onChange={(e) => setTodoText(e.target.value)}
           disabled={done && true}
           className={`h-16 w-full bg-transparent outline-none ${
             done ? "text-green-500 line-through" : "text-red-500"
@@ -44,7 +47,10 @@ export const TableData: React.FC<{
         />
       </td>
       <td scope="row" className="h-16">
-        <button className="h-full w-full text-red-500 hover:bg-darkLightBg">
+        <button
+          className="dark:hover:bg-lightBg h-full w-full text-red-500 hover:bg-darkBg"
+          onClick={() => props.handleRemoveTodo(props.todo.id)}
+        >
           Delete
         </button>
       </td>

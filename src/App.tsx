@@ -9,26 +9,40 @@ export interface Post {
 }
 export default function App() {
   const [todos, setTodos] = useState<Post[]>([]);
-  // const [loading, setLoading] = useState(true);
-
+  const [isLoading, setIsLoading] = useState(true);
+  const [isDark, setIsDark] = useState<boolean>(false);
   useEffect(() => {
     const fetchData = async () => {
       try {
         const res = await fetch("https://jsonplaceholder.typicode.com/posts");
         const data = await res.json();
         setTodos(data);
-        // setLoading(false);
+        setIsLoading(false);
       } catch (error) {
         console.error(`Error: ${error}`);
-        // setLoading(false);
+        setIsLoading(false);
       }
     };
     fetchData();
   }, []);
+
+  const handleRemoveTodo = (todoId: number) => {
+    const newTodos = todos.filter((todo) => todo.id !== todoId);
+    setTodos(newTodos);
+  };
+
   return (
-    <div className="relative grid gap-5">
-      <Header />
-      <Main todos={todos} setTodos={setTodos} />
+    <div className={`${isDark && "dark"}`}>
+      <div className="dark:bg-lightBg  relative grid min-h-screen gap-5 bg-darkBg">
+        <Header isDark={isDark} setIsDark={setIsDark} />
+        <Main
+          isLoading={isLoading}
+          setIsLoading={setIsLoading}
+          todos={todos}
+          setTodos={setTodos}
+          handleRemoveTodo={handleRemoveTodo}
+        />
+      </div>
     </div>
   );
 }

@@ -12,12 +12,12 @@
 }
 
 .table-heading {
-  @apply border-darkBg py-4;
+  @apply dark:border-lightBg border-darkBg py-4;
 }
 .table-heading:last-child {
   @apply border-r-0 text-center;
 }
 
 .table-data {
-  @apply border-darkSeparator;
+  @apply dark:border-lightLighter border-darkSeparator;
 }
