@@ -10,11 +10,14 @@ export default {
         grayWhite: "#ddd",
         // Dark mode
         darkBg: "#0D0D0D",
-        darkLighterBg: "#090909",
-        darkLightBg: "#0A0A0A",
+        darkLighter: "#090909",
+        darkLight: "#0A0A0A",
         darkSeparator: "#151515",
         // Light mode
-        lightMainBg: "#0f0f0f",
+        lightBg: "#DDD",
+        lightLighter: "#eee",
+        lightDarker: "#404040",
+        lightSeparator: "#aaa",
       },
       // Keyframes #ff0000
 
